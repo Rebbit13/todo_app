@@ -1,0 +1,12 @@
+bin/
+pyvenv.cfg
+lib/
+__pycache__/
+.vscode/
+.idea
+.python-version
+.env
+*.sqlite3
+fd.py
+.pytest_cache
+/fd_2.py
