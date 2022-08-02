@@ -6,31 +6,31 @@ from ..todo import Todo
 
 class TodoRepository(metaclass=ABCMeta):
 
-    def get(
+    async def get(
             self,
             uuid: UUID,
     ) -> Todo:
         raise NotImplemented
 
-    def create(
+    async def create(
             self,
             todo: Todo,
     ) -> Todo:
         raise NotImplemented
 
-    def update(
+    async def update(
             self,
             todo: Todo,
     ) -> Todo:
         raise NotImplemented
 
-    def delete(
+    async def delete(
             self,
             uuid: UUID,
     ) -> None:
         raise NotImplemented
 
-    def get_all_for_user(
+    async def get_all_for_user(
             self,
             user_uuid: UUID
     ) -> list[Todo]:

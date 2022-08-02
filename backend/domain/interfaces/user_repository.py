@@ -6,25 +6,25 @@ from ..user import User
 
 class UserRepository(metaclass=ABCMeta):
 
-    def get(
+    async def get(
             self,
             uuid: UUID,
     ) -> User:
         raise NotImplemented
 
-    def create(
+    async def create(
             self,
             user: User,
     ) -> User:
         raise NotImplemented
 
-    def update(
+    async def update(
             self,
             user: User,
     ) -> User:
         raise NotImplemented
 
-    def delete(
+    async def delete(
             self,
             uuid: UUID,
     ) -> None:
