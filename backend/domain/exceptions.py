@@ -1,0 +1,2 @@
+class TodoAlreadyDoneError(Exception):
+    pass
