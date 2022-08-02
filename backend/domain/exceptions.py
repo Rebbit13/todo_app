@@ -16,3 +16,7 @@ class TodoTitleNotValid(Exception):
 
 class TodoTextNotValid(Exception):
     pass
+
+
+class AlreadyHasOwnerError(Exception):
+    pass

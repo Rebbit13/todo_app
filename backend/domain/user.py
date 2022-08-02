@@ -9,8 +9,8 @@ USERNAME_MIN_LENGTH = 3
 
 @dataclass
 class User:
-    uuid: UUID
     username: str
+    uuid: UUID | None = None
 
     def validate(self):
         if len(self.username) > USERNAME_MAX_LENGTH:

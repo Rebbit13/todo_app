@@ -1,24 +1,25 @@
 from dataclasses import dataclass
 from uuid import UUID
 
-from .exceptions import TodoAlreadyDoneError, TodoOwnerNotValid, TodoTitleNotValid, TodoTextNotValid
+from .exceptions import TodoAlreadyDoneError, TodoOwnerNotValid, TodoTitleNotValid, TodoTextNotValid, \
+    AlreadyHasOwnerError
 from .user import User
 
 
 TITLE_MAX_LENGTH = 100
 TITLE_MIN_LENGTH = 3
 
-TEXT_MAX_LENGTH = 100
+TEXT_MAX_LENGTH = 300
 TEXT_MIN_LENGTH = 3
 
 
 @dataclass
 class Todo:
-    uuid: UUID
     title: str
     text: str
-    owner: User
-    done: bool
+    owner: User = None
+    done: bool = False
+    uuid: UUID | None = None
 
     def validate(self):
         # type checking
@@ -46,8 +47,7 @@ class Todo:
             raise TodoAlreadyDoneError("Todo is already done")
         self.done = True
 
-    def check_if_owner(
-            self,
-            user: User
-    ):
-        return user.uuid == self.owner.uuid
+    def set_owner(self, user: User):
+        if self.owner:
+            raise AlreadyHasOwnerError("Todo already has owner")
+        self.owner = user

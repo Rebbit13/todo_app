@@ -15,7 +15,6 @@ class TodoRepository(metaclass=ABCMeta):
     def create(
             self,
             todo: Todo,
-            user_uuid: UUID
     ) -> Todo:
         raise NotImplemented
 
