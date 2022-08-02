@@ -1,7 +1,7 @@
 from abc import ABCMeta
 from uuid import UUID
 
-from ..todo import Todo
+from backend.todo.domain.todo import Todo
 
 
 class TodoRepository(metaclass=ABCMeta):

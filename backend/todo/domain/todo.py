@@ -31,12 +31,12 @@ class Todo:
             raise TodoTitleNotValid("Todo text must be string")
 
         # length checking
-        if not TITLE_MIN_LENGTH < len(self.title) < TITLE_MAX_LENGTH:
+        if not TITLE_MIN_LENGTH <= len(self.title) <= TITLE_MAX_LENGTH:
             raise TodoTitleNotValid(
                 f"Todo title must be more than {TITLE_MIN_LENGTH} chars "
                 f"and less than {TITLE_MAX_LENGTH} chars"
             )
-        if not TEXT_MIN_LENGTH < len(self.text) < TEXT_MAX_LENGTH:
+        if not TEXT_MIN_LENGTH <= len(self.text) <= TEXT_MAX_LENGTH:
             raise TodoTextNotValid(
                 f"Todo text must be more than {TEXT_MIN_LENGTH} chars "
                 f"and less than {TEXT_MAX_LENGTH} chars"

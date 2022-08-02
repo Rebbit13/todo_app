@@ -1,7 +1,7 @@
 from abc import ABCMeta
 from uuid import UUID
 
-from ..user import User
+from .user import User
 
 
 class UserRepository(metaclass=ABCMeta):
@@ -14,13 +14,13 @@ class UserRepository(metaclass=ABCMeta):
 
     async def create(
             self,
-            user: User,
+            todo: User,
     ) -> User:
         raise NotImplemented
 
     async def update(
             self,
-            user: User,
+            todo: User,
     ) -> User:
         raise NotImplemented
 

@@ -1,20 +1,15 @@
 from uuid import UUID
 
-from backend.domain import UserRepository, TodoRepository, User, Todo
-from .exceptions import NotAnOwnerError, NotAUserRepository, NotATodoRepository
+from ..domain import TodoRepository, User, Todo
+from .exceptions import NotAnOwnerError, NotATodoRepository
 
 
 class UseCases:
 
     def __init__(
             self,
-            user_repository: UserRepository,
             todo_repository: TodoRepository
     ):
-        if not isinstance(user_repository, UserRepository):
-            raise NotAUserRepository("user_repository must be instance of UserRepository")
-        self.user_repository = user_repository
-
         if not isinstance(todo_repository, TodoRepository):
             raise NotATodoRepository("todo_repository must be instance of UserRepository")
         self.todo_repository = todo_repository
