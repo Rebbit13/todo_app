@@ -1,10 +1,10 @@
-from abc import ABC
+from abc import ABCMeta
 from uuid import UUID
 
 from ..todo import Todo
 
 
-class TodoRepository(ABC):
+class TodoRepository(metaclass=ABCMeta):
 
     def get(
             self,

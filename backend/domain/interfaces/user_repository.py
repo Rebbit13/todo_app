@@ -1,10 +1,10 @@
-from abc import ABC
+from abc import ABCMeta
 from uuid import UUID
 
 from ..user import User
 
 
-class UserRepository(ABC):
+class UserRepository(metaclass=ABCMeta):
 
     def get(
             self,
