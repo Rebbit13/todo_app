@@ -4,7 +4,7 @@ from uuid import UUID
 from ..user import User
 
 
-class TodoRepository(ABC):
+class UserRepository(ABC):
 
     def get(
             self,
