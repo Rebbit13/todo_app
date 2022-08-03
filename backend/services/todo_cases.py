@@ -1,10 +1,10 @@
 from uuid import UUID
 
-from ..domain import TodoRepository, User, Todo
-from .exceptions import NotAnOwnerError, NotATodoRepository
+from backend.domain.todo import TodoRepository, User, Todo
+from .exceptions import NotATodoRepository, NotAnOwnerError
 
 
-class UseCases:
+class TodoCases:
 
     def __init__(
             self,
@@ -22,6 +22,16 @@ class UseCases:
         todo.set_owner(user)
         todo.validate()
         return await self.todo_repository.create(todo)
+
+    async def change_todo(
+            self,
+            todo: Todo
+    ) -> Todo:
+        db_todo = await self.todo_repository.get(todo.uuid)
+        for attr, value in todo.get_updated_dict().values():
+            if value is not None:
+                setattr(db_todo, attr, value)
+        return await self.todo_repository.update(db_todo)
 
     async def set_todo_done(
             self,

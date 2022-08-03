@@ -11,8 +11,8 @@ USERNAME_MIN_LENGTH = 3
 @dataclass
 class User:
     username: str
+    creds: str
     uuid: UUID = None
-    creds: str = None
 
     def validate(self):
         if not isinstance(self.username, str):
@@ -24,4 +24,4 @@ class User:
             )
 
         if not isinstance(self.creds, str):
-            raise CredsNotValid("Creds must be string")
+            raise UsernameNotValid("Creds must be string")

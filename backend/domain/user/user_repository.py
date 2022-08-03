@@ -1,37 +1,32 @@
 from abc import ABCMeta
 from uuid import UUID
 
-from backend.todo.domain.todo import Todo
+from .user import User
 
 
-class TodoRepository(metaclass=ABCMeta):
+class UserRepository(metaclass=ABCMeta):
 
     async def get(
             self,
-            uuid: UUID,
-    ) -> Todo:
+            uuid: UUID = None,
+            username: str = None,
+    ) -> User:
         raise NotImplemented
 
     async def create(
             self,
-            todo: Todo,
-    ) -> Todo:
+            user: User,
+    ) -> User:
         raise NotImplemented
 
     async def update(
             self,
-            todo: Todo,
-    ) -> Todo:
+            user: User,
+    ) -> User:
         raise NotImplemented
 
     async def delete(
             self,
             uuid: UUID,
     ) -> None:
-        raise NotImplemented
-
-    async def get_all_for_user(
-            self,
-            user_uuid: UUID
-    ) -> list[Todo]:
         raise NotImplemented

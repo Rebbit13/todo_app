@@ -15,8 +15,8 @@ TEXT_MIN_LENGTH = 3
 
 @dataclass
 class Todo:
-    title: str
-    text: str
+    title: str = None
+    text: str = None
     owner: User = None
     done: bool = False
     uuid: UUID | None = None
@@ -41,6 +41,13 @@ class Todo:
                 f"Todo text must be more than {TEXT_MIN_LENGTH} chars "
                 f"and less than {TEXT_MAX_LENGTH} chars"
             )
+
+    def get_updated_dict(self) -> dict:
+        """ returns dict with values that can be changed """
+        return {
+            "title": self.title,
+            "text": self.text,
+        }
 
     def set_done(self):
         if self.done:
