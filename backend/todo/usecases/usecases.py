@@ -8,11 +8,11 @@ class UseCases:
 
     def __init__(
             self,
-            todo_repository: TodoRepository
+            repository: TodoRepository
     ):
-        if not isinstance(todo_repository, TodoRepository):
+        if not isinstance(repository, TodoRepository):
             raise NotATodoRepository("todo_repository must be instance of UserRepository")
-        self.todo_repository = todo_repository
+        self.todo_repository = repository
 
     async def create_todo(
             self,

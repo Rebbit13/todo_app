@@ -1,13 +1,11 @@
 from abc import ABCMeta
 
-from .user import User
-
 
 class Auth(metaclass=ABCMeta):
 
-    def validate(
+    async def validate(
             self,
-            user: User,
+            user_name: str,
             creds: str
     ) -> bool:
         raise NotImplemented

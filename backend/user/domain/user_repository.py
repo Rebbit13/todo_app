@@ -14,13 +14,13 @@ class UserRepository(metaclass=ABCMeta):
 
     async def create(
             self,
-            todo: User,
+            user: User,
     ) -> User:
         raise NotImplemented
 
     async def update(
             self,
-            todo: User,
+            user: User,
     ) -> User:
         raise NotImplemented
 
