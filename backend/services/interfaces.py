@@ -25,7 +25,7 @@ class TokenType(Enum):
 class TokenPayload:
     user_uuid: UUID
     token_type: TokenType
-    exceed: datetime
+    exceed: str
 
 
 class TokenInterface(metaclass=ABCMeta):
@@ -36,7 +36,7 @@ class TokenInterface(metaclass=ABCMeta):
 
     @staticmethod
     def create_token(
-        user_uuid: str,
+        user_uuid: UUID,
         token_type: TokenType,
         living_time: timedelta,
     ) -> str:

@@ -1,4 +1,5 @@
 from datetime import timedelta
+from uuid import UUID
 
 from .exceptions import NotAuthorized, NotAHashInterface, NotAUserRepository
 from .interfaces import HashInterface, TokenInterface, TokenType
@@ -28,16 +29,16 @@ class UserCases:
 
     def _create_token_pair(
             self,
-            user_uuid
+            user_uuid: UUID
     ) -> (str, str):
         """ generates access and refresh tokens by uuid"""
         access = self.token_service.create_token(
-            str(user_uuid),
+            user_uuid,
             TokenType.access,
             TOKEN_LIVING_TIME
         )
         refresh = self.token_service.create_token(
-            str(user_uuid),
+            user_uuid,
             TokenType.refresh,
             TOKEN_LIVING_TIME + timedelta(minutes=3)
         )
