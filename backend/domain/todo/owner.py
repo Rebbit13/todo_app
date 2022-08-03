@@ -3,5 +3,5 @@ from uuid import UUID
 
 
 @dataclass
-class User:
+class Owner:
     uuid: UUID | None = None

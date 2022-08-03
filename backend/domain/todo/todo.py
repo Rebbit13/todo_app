@@ -3,7 +3,7 @@ from uuid import UUID
 
 from .exceptions import TodoAlreadyDoneError, TodoOwnerNotValid, TodoTitleNotValid, TodoTextNotValid, \
     AlreadyHasOwnerError
-from .user import User
+from .owner import Owner
 
 
 TITLE_MAX_LENGTH = 100
@@ -17,13 +17,13 @@ TEXT_MIN_LENGTH = 3
 class Todo:
     title: str = None
     text: str = None
-    owner: User = None
+    owner: Owner = None
     done: bool = False
     uuid: UUID | None = None
 
     def validate(self):
         # type checking
-        if not isinstance(self.owner, User):
+        if not isinstance(self.owner, Owner):
             raise TodoOwnerNotValid("Todo owner must be instance of User")
         if not isinstance(self.title, str):
             raise TodoTextNotValid("Todo title must be string")
@@ -54,7 +54,7 @@ class Todo:
             raise TodoAlreadyDoneError("Todo is already done")
         self.done = True
 
-    def set_owner(self, user: User):
+    def set_owner(self, owner: Owner):
         if self.owner:
             raise AlreadyHasOwnerError("Todo already has owner")
-        self.owner = user
+        self.owner = owner

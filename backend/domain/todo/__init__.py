@@ -1,5 +1,5 @@
 from .exceptions import TodoAlreadyDoneError, TodoOwnerNotValid, AlreadyHasOwnerError
 from .exceptions import TodoTitleNotValid, TodoTextNotValid
 from .todo_repository import TodoRepository
-from .user import User
+from .owner import Owner
 from .todo import Todo

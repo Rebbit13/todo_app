@@ -1,6 +1,6 @@
 from uuid import UUID
 
-from backend.domain.todo import TodoRepository, User, Todo
+from backend.domain.todo import TodoRepository, Owner, Todo
 from .exceptions import NotATodoRepository, NotAnOwnerError
 
 
@@ -11,15 +11,15 @@ class TodoCases:
             repository: TodoRepository
     ):
         if not isinstance(repository, TodoRepository):
-            raise NotATodoRepository("todo_repository must be instance of UserRepository")
+            raise NotATodoRepository("todo_repository must be instance of TodoRepository")
         self.todo_repository = repository
 
     async def create_todo(
             self,
-            user: User,
+            owner: Owner,
             todo: Todo
     ) -> Todo:
-        todo.set_owner(user)
+        todo.set_owner(owner)
         todo.validate()
         return await self.todo_repository.create(todo)
 
@@ -35,14 +35,14 @@ class TodoCases:
 
     async def set_todo_done(
             self,
-            user: User,
+            owner: Owner,
             todo_uuid: UUID
     ) -> Todo:
         todo = await self.todo_repository.get(todo_uuid)
-        if user.uuid != todo.owner.uuid:
+        if owner.uuid != todo.owner.uuid:
             raise NotAnOwnerError("User must be an owner to set todo done")
         todo.set_done()
         return await self.todo_repository.update(todo)
 
-    async def get_todos(self, user: User) -> list[Todo]:
-        return await self.todo_repository.get_all_for_user(user.uuid)
+    async def get_todos(self, owner: Owner) -> list[Todo]:
+        return await self.todo_repository.get_all_for_an_owner(owner.uuid)

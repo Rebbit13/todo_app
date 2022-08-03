@@ -24,13 +24,7 @@ class TodoRepository(metaclass=ABCMeta):
     ) -> Todo:
         raise NotImplemented
 
-    async def delete(
-            self,
-            uuid: UUID,
-    ) -> None:
-        raise NotImplemented
-
-    async def get_all_for_user(
+    async def get_all_for_an_owner(
             self,
             user_uuid: UUID
     ) -> list[Todo]:

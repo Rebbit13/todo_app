@@ -24,9 +24,3 @@ class UserRepository(metaclass=ABCMeta):
             user: User,
     ) -> User:
         raise NotImplemented
-
-    async def delete(
-            self,
-            uuid: UUID,
-    ) -> None:
-        raise NotImplemented
