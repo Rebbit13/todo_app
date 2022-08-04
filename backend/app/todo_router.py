@@ -1,7 +1,7 @@
 from uuid import UUID
 
 from fastapi import APIRouter, Depends
-
+from starlette.responses import JSONResponse
 
 from backend.domain.user import User
 from backend.domain.todo import Owner, Todo
@@ -27,7 +27,11 @@ async def create(
         owner=Owner(uuid=current_user.uuid),
         **todo.dict(exclude_unset=True)
     )
-    return await todo_cases.create_todo(todo_to_create)
+    todo = await todo_cases.create_todo(todo_to_create)
+    return JSONResponse(
+        status_code=201,
+        content=todo
+    )
 
 
 @router.post("/{todo_uuid}/set_done", response_model=TodoResponse)
@@ -51,5 +55,3 @@ async def update(
         **todo.dict(exclude_unset=True)
     )
     return await todo_cases.change_todo(todo_to_update)
-
-
