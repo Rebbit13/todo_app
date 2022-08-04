@@ -5,6 +5,7 @@ JWT_ALGORITHM = os.getenv("JWT_ALGORITHM")
 JWT_PAYLOAD_TIME_FORMAT = os.getenv("JWT_PAYLOAD_TIME_FORMAT")
 
 LOG_LEVEL = os.getenv("LOG_LEVEL")
+DEBUG = os.getenv("DEBUG")
 
 DB_USER = os.getenv("DB_USER")
 DB_PASSWORD = os.getenv("DB_PASSWORD")

@@ -54,7 +54,7 @@ class UserCases:
         user.validate()
         return await self.repository.create(user)
 
-    def change_password(
+    async def change_password(
             self,
             username: str,
             old_password: str,
@@ -66,7 +66,7 @@ class UserCases:
         user.creds = self.hash_service.hash(new_password)
         await self.repository.update(user)
 
-    def sign_in(
+    async def sign_in(
             self,
             username: str,
             password: str
@@ -77,7 +77,7 @@ class UserCases:
             raise NotAuthorized("User is not authorized")
         return self._create_token_pair(user.uuid)
 
-    def authorize(
+    async def authorize(
             self,
             access: str,
     ) -> User:
@@ -86,7 +86,7 @@ class UserCases:
             raise NotAuthorized("Token must be an access token")
         return await self.repository.get(uuid=payload.user_uuid)
 
-    def refresh(
+    async def refresh(
             self,
             refresh: str,
     ) -> (str, str):

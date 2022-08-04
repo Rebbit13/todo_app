@@ -1,0 +1,38 @@
+version: "3.9"
+
+services:
+
+  app:
+    build:
+      context: ./
+      dockerfile: ./build/docker/Dockerfile
+    environment:
+      JWT_SECRET: "secretsecretsecret"
+      JWT_ALGORITHM: "HS256"
+      JWT_PAYLOAD_TIME_FORMAT: "%d/%m/%y %H:%M:%S"
+      LOG_LEVEL: "INFO"
+      DB_USER: "user"
+      DB_PASSWORD: "password"
+      DB_HOST: "postgres"
+      DB_PORT: 5432
+      DB_NAME: "todo"
+    ports:
+      - "8000:8000"
+    links:
+      - "postgres:postgres"
+
+  postgres:
+    image: postgres:13.2
+    environment:
+      POSTGRES_DB: "todo"
+      POSTGRES_USER: "user"
+      POSTGRES_PASSWORD: "password"
+      POSTGRES_PORT: 5432
+    volumes:
+      -   postgres:/var/lib/postgresql/data
+    restart: always
+    ports:
+      - "5432:5432"
+
+volumes:
+    postgres: {}

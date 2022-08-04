@@ -12,6 +12,6 @@ class TodoTortoise(Model):
     title = fields.TextField()
     text = fields.TextField()
     owner: fields.ForeignKeyRelation[UserTortoise] = fields.ForeignKeyField(
-        "models.User", source_field="owner_uuid", related_name="todos"
+        "models.UserTortoise", source_field="owner_uuid", related_name="todos"
     )
     done = fields.BooleanField(default=False)
