@@ -59,12 +59,12 @@ class UserCases:
             username: str,
             old_password: str,
             new_password: str,
-    ) -> User:
+    ):
         user = await self.repository.get(username=username)
         if not self.hash_service.verify(old_password, user.creds):
             raise NotAuthorized("User is not authorized")
         user.creds = self.hash_service.hash(new_password)
-        return await self.repository.update(user)
+        await self.repository.update(user)
 
     def sign_in(
             self,
