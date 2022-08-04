@@ -20,6 +20,8 @@ services:
       - "8000:8000"
     links:
       - "postgres:postgres"
+    depends_on:
+      - postgres
 
   postgres:
     image: postgres:13.2
