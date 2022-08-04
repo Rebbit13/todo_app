@@ -1,7 +1,7 @@
 from datetime import timedelta
 from uuid import UUID
 
-from .exceptions import NotAuthorized, NotAHashInterface, NotAUserRepository
+from .exceptions import NotAuthorized, NotAHashInterface, NotAUserRepository, NotATokenInterface
 from .interfaces import HashInterface, TokenInterface, TokenType
 from backend.domain.user import UserRepository, User
 
@@ -24,7 +24,7 @@ class UserCases:
             raise NotAUserRepository("repository must be instance of UserRepository")
         self.repository = repository
         if not isinstance(token_service, TokenInterface):
-            raise NotAUserRepository("token_service must be instance of TokenInterface")
+            raise NotATokenInterface("token_service must be instance of TokenInterface")
         self.token_service = token_service
 
     def _create_token_pair(

@@ -16,3 +16,7 @@ class NotAnOwnerError(Exception):
 
 class NotATodoRepository(Exception):
     pass
+
+
+class NotATokenInterface(Exception):
+    pass
