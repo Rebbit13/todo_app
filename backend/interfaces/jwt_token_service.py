@@ -4,15 +4,15 @@ from uuid import UUID
 import jwt
 from jwt import InvalidSignatureError, DecodeError
 
+from settings import JWT_SECRET, JWT_ALGORITHM, JWT_PAYLOAD_TIME_FORMAT
 from .exceptions import TokenBroken, TokenExpired
 from backend.services import TokenInterface, TokenPayload, NotAuthorized, TokenType
 
 
 class JWTTokenService(TokenInterface):
-    # TODO: to envs
-    secret: str = "secret"
-    algorithm: str = "HS256"
-    time_format: str = "%d/%m/%y %H:%M:%S"
+    secret: str = JWT_SECRET
+    algorithm: str = JWT_ALGORITHM
+    time_format: str = JWT_PAYLOAD_TIME_FORMAT
 
     def decode_access_token(self, token: str) -> TokenPayload:
         try:
