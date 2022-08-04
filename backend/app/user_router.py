@@ -4,7 +4,10 @@ from fastapi.security import OAuth2PasswordRequestForm
 from .app_constructor import user_cases
 from .oauth_scheme import oauth2_scheme
 
-router = APIRouter(prefix="/user")
+router = APIRouter(
+    prefix="/user",
+    tags=["todo"]
+)
 
 
 @router.post("/sign_up")

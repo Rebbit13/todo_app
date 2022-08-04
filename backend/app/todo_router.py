@@ -9,7 +9,10 @@ from .oauth_scheme import get_current_user
 from .app_constructor import todo_cases
 from .validation_models import TodoResponse, TodoCreateUpdate
 
-router = APIRouter(prefix="/todo")
+router = APIRouter(
+    prefix="/todo",
+    tags=["todo"]
+)
 
 
 @router.get("", response_model=list[TodoResponse])
