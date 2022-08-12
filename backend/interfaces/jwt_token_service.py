@@ -14,7 +14,7 @@ class JWTTokenService(TokenInterface):
     algorithm: str = JWT_ALGORITHM
     time_format: str = JWT_PAYLOAD_TIME_FORMAT
 
-    def decode_access_token(self, token: str) -> TokenPayload:
+    def decode_token(self, token: str) -> TokenPayload:
         try:
             decoded_token = jwt.decode(token, self.secret, algorithms=[self.algorithm])
         except InvalidSignatureError:

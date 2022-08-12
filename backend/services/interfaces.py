@@ -31,7 +31,7 @@ class TokenPayload:
 class TokenInterface(metaclass=ABCMeta):
 
     @staticmethod
-    def decode_access_token(token: str) -> TokenPayload:
+    def decode_token(token: str) -> TokenPayload:
         raise NotImplemented
 
     @staticmethod

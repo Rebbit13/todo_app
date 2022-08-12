@@ -48,11 +48,12 @@ class UserCases:
             self,
             username: str,
             password: str
-    ) -> User:
+    ) -> (str, str):
         password = self.hash_service.hash(password)
         user = User(username=username, creds=password)
         user.validate()
-        return await self.repository.create(user)
+        user = await self.repository.create(user)
+        return self._create_token_pair(user.uuid)
 
     async def change_password(
             self,
@@ -81,7 +82,7 @@ class UserCases:
             self,
             access: str,
     ) -> User:
-        payload = self.token_service.decode_access_token(access)
+        payload = self.token_service.decode_token(access)
         if payload.token_type != TokenType.access:
             raise NotAuthorized("Token must be an access token")
         return await self.repository.get(uuid=payload.user_uuid)
@@ -90,7 +91,7 @@ class UserCases:
             self,
             refresh: str,
     ) -> (str, str):
-        payload = self.token_service.decode_access_token(refresh)
+        payload = self.token_service.decode_token(refresh)
         if payload.token_type != TokenType.refresh:
             raise NotAuthorized("Token must be a refresh token")
         user = await self.repository.get(uuid=payload.user_uuid)
